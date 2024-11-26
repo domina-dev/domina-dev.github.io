@@ -1,0 +1,208 @@
+/* Definição de paleta de cores */
+:root {
+    --azul: #000144;
+    --laranja: #FC561E;
+    --roxo: #8471E2;
+    --branco: #EDE9E0;
+}
+
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background-color: var(--branco);
+    color: var(--azul);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header e Menu */
+header nav {
+    background: var(--azul);
+    color: var(--branco);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+header nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--laranja);
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: var(--laranja);
+}
+
+/* Ajuste para compensar menu fixo */
+section {
+    padding: 60px 0;
+    margin-top: 50px;
+}
+
+/* Seção Sobre */
+#sobre {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--branco);
+    /* color: var(--roxo); */
+}
+
+#sobre h2 {
+    color: var(--laranja);
+    margin-bottom: 20px;
+}
+
+/* Seção Conteúdo */
+#conteudo ul {
+    list-style: none;
+    padding: 0;
+}
+
+#conteudo ul li {
+    margin: 10px 0;
+    padding: 10px;
+    background: var(--branco);
+    border: 2px solid var(--roxo);
+    border-radius: 5px;
+    color: var(--azul);
+}
+
+/* Estilo para cases */
+/* Cases de Sucesso */
+#cases .case {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: var(--branco);
+    border: 2px solid var(--roxo);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.case-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border: 3px solid var(--azul);
+}
+
+.case-text {
+    flex: 1;
+}
+
+.case-text h3 {
+    margin: 0;
+    color: var(--laranja);
+}
+
+.case-text blockquote {
+    margin: 10px 0 0 0;
+    font-style: italic;
+    color: var(--azul);
+}
+
+/* Seção Contato */
+#contato {
+    background: var(--azul);
+    color: var(--branco);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#contato h2 {
+    color: var(--laranja);
+}
+
+/* Rodapé */
+footer {
+    background: var(--azul);
+    color: var(--branco);
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* ======= RESPONSIVIDADE ======= */
+
+/* Para telas menores que 768px (dispositivos móveis) */
+@media (max-width: 768px) {
+    header nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    header nav ul li a {
+        font-size: 1.2em;
+    }
+
+    #cases .case {
+        text-align: center;
+        padding: 15px;
+    }
+
+    #conteudo ul li {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
+
+/* Para telas menores que 480px (smartphones pequenos) */
+@media (max-width: 480px) {
+    header nav h1 {
+        font-size: 1.2em;
+    }
+
+    header nav ul li a {
+        font-size: 1em;
+    }
+
+    #cases .case blockquote {
+        font-size: 0.9em;
+    }
+}
