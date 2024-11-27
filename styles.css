@@ -62,9 +62,108 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
-
-/* Header e Menu */
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+/* Estilo geral do menu */
 header nav {
+    background: var(--azul);
+    color: var(--branco);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+header nav .container {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+/* Botão retrátil */
+.menu-toggle {
+    display: none; /* Oculto em telas grandes */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--branco);
+    cursor: pointer;
+    z-index: 1100;
+}
+
+/* Logo ou foto */
+.logo {
+    height: 70px; /* Tamanho ajustável */
+    margin-left: 0px; /* Espaçamento entre botão e logo */
+    object-fit: cover;
+}
+
+/* Menu para telas grandes */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* Horizontal */
+    margin-left: auto; /* Alinha o menu à direita */
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: var(--laranja);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    header nav .container {
+        justify-content: flex-start;
+    }
+
+    .menu-toggle {
+        display: block; /* Exibe o botão retrátil */
+        /* Espaço entre o botão e a logo */
+    }
+
+    /* Menu retrátil */
+    .menu {
+        flex-direction: column;
+        position: fixed;
+        top: 60px; /* Abaixo do cabeçalho */
+        left: -100%; /* Oculto fora da tela */
+        height: calc(100% - 70px); /* Ocupa o resto da tela */
+        width: 250px;
+        background: var(--azul);
+        padding: 20px 10px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .menu.active {
+        left: 0; /* Exibe o menu */
+    }
+
+    .menu li {
+        margin: 15px 0; /* Espaço entre itens */
+    }
+
+    .menu a {
+        font-size: 1.2rem;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+/* Header e Menu */
+/* header nav {
     background: var(--azul);
     color: var(--branco);
     position: fixed;
@@ -106,8 +205,10 @@ header nav ul li a {
 
 header nav ul li a:hover {
     color: var(--laranja);
-}
+} */
 
+
+/* ------------------------------------------------------------------------------------------------------------- */
 /* Ajuste para compensar menu fixo */
 section {
     padding: 60px 0;

@@ -12,9 +12,16 @@
     <header>
         <nav>
             <div class="container">
-                <img class="cursor-pointer" src="images/logos/LOGO-HORIZONTAL-A-2.png" alt="Logo Domina Dev"
-                    style="max-width: 200px;">
-                <ul>
+                <div style="display: flex;">
+                    <!-- Botão do menu retrátil -->
+                    <button class="menu-toggle">☰</button>
+        
+                    <!-- Foto / Logo -->
+                    <img src="images/logos/LOGO-HORIZONTAL-A-2.png" alt="Logo ou Foto" class="logo">
+                </div>
+    
+                <!-- Menu (telas grandes ou retrátil ao abrir) -->
+                <ul class="menu">
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#conteudo">Conteúdo</a></li>
                     <li><a href="#cases">Cases</a></li>
@@ -24,6 +31,10 @@
             </div>
         </nav>
     </header>
+    
+
+
+
 
     <section id="sobre">
         <div class="container mt-4">
@@ -151,7 +162,8 @@
                 <div class="banner-content">
                     <p class="banner-text">Venha ser um Dominador!</p>
                     <p class="banner-text">
-                        Na jornada da Domina Dev, você não será apenas mais um, será um líder, pronto para superar desafios,
+                        Na jornada da Domina Dev, você não será apenas mais um, será um líder, pronto para superar
+                        desafios,
                         <span class="highlight-blue">dominar o mercado</span> e se destacar como um profissional de
                         excelência.
                     </p>
@@ -160,10 +172,11 @@
                     <img src="images/programador.png" alt="Pessoa programando">
                 </div>
             </div>
-    
+
             <!-- Formulário -->
             <div class="form-container">
-                <h3>Realize seu cadastro gratuito para ter acesso <span class="highlight">VIP</span> à nossa turma de 2025
+                <h3>Realize seu cadastro gratuito para ter acesso <span class="highlight">VIP</span> à nossa turma de
+                    2025
                 </h3>
                 <form>
                     <input type="text" placeholder="Digite seu nome aqui" required />
@@ -172,7 +185,8 @@
                     <button type="submit">Entrar na lista de espera</button>
                 </form>
                 <p class="policy">
-                    *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com as
+                    *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
+                    as
                     nossas
                     <a href="#">política de privacidade</a>.
                 </p>
@@ -220,6 +234,23 @@
         function redirectTo() {
             window.open('https://wa.me/48988668130?text=Como%20faço%20para%20me%20inscrever?%0Ahttps://domina.dev/', '_blank');
         }
+
+
+        // menu
+        const toggleButton = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+
+        // Alterna o menu ao clicar no botão
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar em um link
+        menu.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                menu.classList.remove('active');
+            }
+        });
     </script>
 </body>
 
