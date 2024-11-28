@@ -189,7 +189,7 @@
                     *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
                     as
                     nossas
-                    <a href="#">política de privacidade</a>.
+                    <a href="politica-privacidade.html">política de privacidade</a>.
                 </p>
             </div>
         </div>
@@ -199,8 +199,8 @@
     <section id="contato">
         <div class="container">
             <h2>Entre em Contato</h2>
-            <p><strong>Celular:</strong> <label class="color-branco telefone" onclick="redirectTo()">(48) 9
-                    8866-8130</label></p>
+            <!-- <p><strong>Celular:</strong> <label class="color-branco telefone" onclick="redirectTo()">(48) 9
+                    8866-8130</label></p> -->
             <p><strong>Email:</strong> vitor.nunes@domina.dev</p>
         </div>
     </section>
@@ -211,7 +211,6 @@
         </div>
     </footer>
 
-    <!-- Adicionando o Script para rolagem suave -->
     <script>
         // Selecionando todos os links com o atributo href começando com #
         const links = document.querySelectorAll('a[href^="#"]');
@@ -283,7 +282,7 @@
             emailjs.send(serviceGoDaddy, templateNovoInteresse, templateParams).then(
                 function (response) {
                     alert('Formulário enviado com sucesso! Obrigado.');
-                    
+
                     //Enviar email para Aluno
                     emailjs.send(serviceGoDaddy, templateBemVindo, templateParams);
                 },
