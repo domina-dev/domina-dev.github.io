@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domina Dev - Torne-se um Dominador da Programação</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- <link rel="icon" href="images/logos/SÍMBOLO-1.png" type="image/x-icon"> -->
     <link rel="icon" type="image/png" sizes="64x64" href="images/logos/SÍMBOLO-1.png">
 
@@ -275,10 +276,16 @@
             console.log("emailjs::: ", emailjs);
 
             // Enviar o e-mail usando EmailJS
-            emailjs.send('service_mre974a', 'template_4qpk3nd', templateParams).then(
+            const serviceGoDaddy = "service_mre974a";
+            const templateBemVindo = "template_mbazqqi";
+            const templateNovoInteresse = "template_4qpk3nd";
+
+            emailjs.send(serviceGoDaddy, templateNovoInteresse, templateParams).then(
                 function (response) {
                     alert('Formulário enviado com sucesso! Obrigado.');
-                    console.log('Sucesso!', response.status, response.text);
+                    
+                    //Enviar email para Aluno
+                    emailjs.send(serviceGoDaddy, templateBemVindo, templateParams);
                 },
                 function (error) {
                     alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
@@ -286,6 +293,7 @@
                 }
             );
         }
+
     </script>
 </body>
 

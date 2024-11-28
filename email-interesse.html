@@ -42,19 +42,25 @@
             <h1>Novo Interessado!</h1>
         </div>
         <div class="content">
-            <p>Olá, [Seu Nome],</p>
+            <p>Olá, Vítor,</p>
             <p>Um novo aluno demonstrou interesse em ingressar na Domina Dev!</p>
             <p><strong>Dados do interessado:</strong></p>
             <ul>
-                <li><strong>Nome:</strong> [Nome do Aluno]</li>
-                <li><strong>E-mail:</strong> [E-mail do Aluno]</li>
-                <li><strong>Telefone:</strong> [Telefone do Aluno]</li>
+                <li><strong>Nome:</strong> {{nome}}</li>
+                <li><strong>E-mail:</strong> {{email}}</li>
+                <li onclick="redirectTo()"><strong>Telefone:</strong> {{telefone}}</li>
             </ul>
-            <p>Certifique-se de entrar em contato o mais rápido possível para garantir que ele tenha uma experiência incrível conosco!</p>
+            <p>Entre em contato o mais rápido possível para garantir que ele tenha uma experiência incrível conosco!</p>
         </div>
         <div class="footer">
             <p>© 2024 Domina Dev. Painel de Administração.</p>
         </div>
     </div>
+    <script>
+        
+        function redirectTo() {
+            window.open('https://wa.me/{{telefone}}', '_blank');
+        }
+    </script>
 </body>
 </html>
