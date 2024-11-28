@@ -7,6 +7,9 @@
     <title>Domina Dev - Torne-se um Dominador da Programação</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- <link rel="icon" href="images/logos/SÍMBOLO-1.png" type="image/x-icon"> -->
+    <link rel="icon" type="image/png" sizes="64x64" href="images/logos/SÍMBOLO-1.png">
+
 </head>
 
 <body>
@@ -179,7 +182,7 @@
                     <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
-                    <button type="submit">Entrar na lista de espera</button>
+                    <button onclick="sendEmail()">Entrar na lista de espera</button>
                 </form>
                 <p class="policy">
                     *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
@@ -251,37 +254,37 @@
 
         function sendEmail() {
             // Inicialize o EmailJS
-            emailjs.init('2ya5yNRO_q9Lylc7N'); // Substitua pelo seu User ID do EmailJS
+            // emailjs.init('2xCH2QUwQR2O6wc3H'); // Substitua pelo seu User ID do EmailJS
 
-            document.getElementById('cadastroForm').addEventListener('submit', function (event) {
-                event.preventDefault(); // Impede o envio padrão do formulário
+            emailjs.init('2xCH2QUwQR2O6wc3H');
 
-                // Capture os valores do formulário
-                const nome = document.getElementById('nome').value;
-                const email = document.getElementById('email').value;
-                const telefone = document.getElementById('telefone').value;
+            event.preventDefault(); // Impede o envio padrão do formulário
 
-                // Configurar os dados a serem enviados
-                const templateParams = {
-                    nome: nome,
-                    email: email,
-                    telefone: telefone,
-                };
+            // Capture os valores do formulário
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
 
-                // Enviar o e-mail usando EmailJS
-                emailjs
-                    .send('service_mre974a', 'template_4qpk3nd', templateParams)
-                    .then(
-                        function (response) {
-                            alert('Formulário enviado com sucesso! Obrigado.');
-                            console.log('Sucesso!', response.status, response.text);
-                        },
-                        function (error) {
-                            alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
-                            console.log('Erro:', error);
-                        }
-                    );
-            });
+            // Configurar os dados a serem enviados
+            const templateParams = {
+                nome: nome,
+                email: email,
+                telefone: telefone,
+            };
+            console.log("templateParams::: ", templateParams);
+            console.log("emailjs::: ", emailjs);
+
+            // Enviar o e-mail usando EmailJS
+            emailjs.send('service_mre974a', 'template_4qpk3nd', templateParams).then(
+                function (response) {
+                    alert('Formulário enviado com sucesso! Obrigado.');
+                    console.log('Sucesso!', response.status, response.text);
+                },
+                function (error) {
+                    alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+                    console.log('Erro:', error);
+                }
+            );
         }
     </script>
 </body>
