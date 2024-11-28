@@ -1,4 +1,4 @@
-/* Definição de paleta de cores */
+/* --------------------- Configurações de Cores --------------------- */
 :root {
     --azul: #000144;
     --laranja: #FC561E;
@@ -6,47 +6,43 @@
     --branco: #EDE9E0;
 }
 
-.mt-1{
-    margin-top: 0.25rem;
-}
-.mt-2{
-    margin-top: 0.50rem;
-}
-.mt-3{
-    margin-top: 0.75rem;
-}
-.mt-4{
-    margin-top: 1rem !important;
-}
-.mt-5{
-    margin-top: 1.5rem;
+/* --------------------- Classes de Espaçamento Vertical --------------------- */
+.mt-1 { margin-top: 0.25rem; }
+
+.mt-2 { margin-top: 0.50rem; }
+
+.mt-3 { margin-top: 0.75rem;}
+
+.mt-4 { margin-top: 1rem !important;}
+
+.mt-5 { margin-top: 1.5rem; }
+
+/* --------------------- Estilos Gerais --------------------- */
+.cursor-pointer { cursor: pointer; }
+
+.alinhar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.cursor-pointer{
+/* --------------------- Configurações de Cores para o Texto --------------------- */
+.color-azul { color: var(--azul); }
+
+.color-branco { color: var(--branco) !important; }
+
+.color-roxo { color: var(--roxo); }
+
+.color-laranja { color: var(--laranja); }
+
+/* --------------------- Estilo para Telefone rodapé --------------------- */
+.telefone {
     cursor: pointer;
-}
-
-
-.color-azul{
-    color: var(--azul);
-}
-.color-branco{
-    color: var(--branco) !important;
-}
-.color-roxo{
-    color: var(--roxo);
-}
-.color-laranja{
-    color: var(--laranja);
-}
-
-.telefone{
-    cursor: pointer; 
     text-decoration: underline;
 }
 
-/* Estilos globais */
+/* --------------------- Estilo Global do Corpo --------------------- */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -57,13 +53,14 @@ body {
     color: var(--azul);
 }
 
+/* --------------------- Estrutura Principal do Container --------------------- */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* Estilo geral do menu */
+
+/* --------------------- Cabeçalho e Navegação --------------------- */
 header nav {
     background: var(--azul);
     color: var(--branco);
@@ -74,15 +71,16 @@ header nav {
     padding: 10px 0;
 }
 
+/* --------------------- Layout do Container no Cabeçalho --------------------- */
 header nav .container {
     display: flex;
     align-items: center;
     padding: 0 15px;
 }
 
-/* Botão retrátil */
+/* --------------------- Botão para Alternar Menu --------------------- */
 .menu-toggle {
-    display: none; /* Oculto em telas grandes */
+    display: none;
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -91,21 +89,21 @@ header nav .container {
     z-index: 1100;
 }
 
-/* Logo ou foto */
+/* --------------------- Estilo para o Logotipo --------------------- */
 .logo {
-    height: 70px; /* Tamanho ajustável */
-    margin-left: 0px; /* Espaçamento entre botão e logo */
+    height: 70px;
+    margin-left: 0px;
     object-fit: cover;
 }
 
-/* Menu para telas grandes */
+/* --------------------- Lista de Navegação --------------------- */
 .menu {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: row; /* Horizontal */
-    margin-left: auto; /* Alinha o menu à direita */
+    flex-direction: row;
+    margin-left: auto;
 }
 
 .menu li {
@@ -123,104 +121,18 @@ header nav .container {
     color: var(--laranja);
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 768px) {
-    header nav .container {
-        justify-content: flex-start;
-    }
 
-    .menu-toggle {
-        display: block; /* Exibe o botão retrátil */
-        /* Espaço entre o botão e a logo */
-    }
-
-    /* Menu retrátil */
-    .menu {
-        flex-direction: column;
-        position: fixed;
-        top: 60px; /* Abaixo do cabeçalho */
-        left: -100%; /* Oculto fora da tela */
-        height: calc(100% - 70px); /* Ocupa o resto da tela */
-        width: 250px;
-        background: var(--azul);
-        padding: 20px 10px;
-        z-index: 1000;
-        transition: left 0.3s ease;
-    }
-
-    .menu.active {
-        left: 0; /* Exibe o menu */
-    }
-
-    .menu li {
-        margin: 15px 0; /* Espaço entre itens */
-    }
-
-    .menu a {
-        font-size: 1.2rem;
-    }
-}
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* Header e Menu */
-/* header nav {
-    background: var(--azul);
-    color: var(--branco);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 10px 0;
-}
-
-header nav .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header nav h1 {
-    margin: 0;
-    font-size: 1.5em;
-    color: var(--laranja);
-}
-
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-header nav ul li {
-    margin: 0 15px;
-}
-
-header nav ul li a {
-    color: var(--branco);
-    text-decoration: none;
-    font-size: 1em;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-    color: var(--laranja);
-} */
-
-
-/* ------------------------------------------------------------------------------------------------------------- */
-/* Ajuste para compensar menu fixo */
+/* --------------------- Seções Gerais --------------------- */
 section {
     padding: 60px 0;
     margin-top: 50px;
 }
 
-/* Seção Sobre */
+/* --------------------- SOBRE --------------------- */
 #sobre {
     text-align: center;
     padding: 80px 20px;
     background-color: var(--branco);
-    /* color: var(--roxo); */
 }
 
 #sobre h2 {
@@ -228,7 +140,7 @@ section {
     margin-bottom: 20px;
 }
 
-/* Seção Conteúdo */
+/* --------------------- CONTEÚDO --------------------- */
 #conteudo ul {
     list-style: none;
     padding: 0;
@@ -243,8 +155,18 @@ section {
     color: var(--azul);
 }
 
-/* Estilo para cases */
-/* Cases de Sucesso */
+#conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#conteudo .texto {
+    flex: 1 1 300px;
+    max-width: 850px;
+}
+
+/* --------------------- CASES --------------------- */
 #cases .case {
     display: flex;
     align-items: center;
@@ -272,14 +194,13 @@ section {
     margin: 0;
     color: var(--laranja);
 }
-
 .case-text blockquote {
     margin: 10px 0 0 0;
     font-style: italic;
     color: var(--azul);
 }
 
-/* Seção Contato */
+/* --------------------- CONTATO --------------------- */
 #contato {
     background: var(--azul);
     color: var(--branco);
@@ -291,74 +212,7 @@ section {
     color: var(--laranja);
 }
 
-/* Rodapé */
-footer {
-    background: var(--azul);
-    color: var(--branco);
-    text-align: center;
-    padding: 10px 0;
-}
-
-/* ======= RESPONSIVIDADE ======= */
-
-/* Para telas menores que 768px (dispositivos móveis) */
-@media (max-width: 768px) {
-    header nav .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-
-    header nav ul li {
-        margin: 10px 0;
-    }
-
-    header nav ul li a {
-        font-size: 1.2em;
-    }
-
-    #cases .case {
-        text-align: center;
-        padding: 15px;
-    }
-
-    #conteudo ul li {
-        font-size: 0.9em;
-        padding: 8px;
-    }
-}
-
-/* Para telas menores que 480px (smartphones pequenos) */
-@media (max-width: 480px) {
-    header nav h1 {
-        font-size: 1.2em;
-    }
-
-    header nav ul li a {
-        font-size: 1em;
-    }
-
-    #cases .case blockquote {
-        font-size: 0.9em;
-    }
-}
-/* -------------------------------------------------------------------------------------- */
-/* Container principal */
-
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--branco);
-    color: var(--azul);
-} */
-
-/* Container principal */
+/* --------------------- Banner e Formulário --------------------- */
 .container-banner-form {
     display: flex;
     align-items: stretch;
@@ -369,7 +223,7 @@ footer {
     padding: 20px;
 }
 
-/* Banner */
+/* --------------------- Banner --------------------- */
 .banner {
     display: flex;
     flex-wrap: wrap;
@@ -415,7 +269,7 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Formulário */
+/* --------------------- Formulário --------------------- */
 .form-container {
     background-color: var(--azul);
     color: var(--branco);
@@ -465,6 +319,7 @@ form button:hover {
     background-color: var(--roxo);
 }
 
+/* --------------------- Políticas de privacidade form --------------------- */
 .policy {
     font-size: 0.8rem;
     margin-top: 10px;
@@ -480,7 +335,34 @@ form button:hover {
     text-decoration: underline;
 }
 
-/* Responsividade */
+/* --------------------- Rodapé --------------------- */
+footer {
+    background: var(--azul);
+    color: var(--branco);
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+/* --------------------- Responsividade --------------------- */
+
+@media (max-width: 1400px) {
+    #conteudo {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    #conteudo .imagem {
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+
+    #conteudo ul li {
+        padding: 10px 15px;
+    }
+}
+
 @media (max-width: 1024px) {
     .container-banner-form {
         flex-direction: column;
@@ -510,9 +392,122 @@ form button:hover {
         font-size: 1rem;
     }
 
-    form input, form button {
+    form input,
+    form button {
         font-size: 0.9rem;
         padding: 8px;
+    }
+
+    #cases .case {
+        padding: 0 15px;
+    }
+
+    header nav .container {
+        justify-content: flex-start;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        /* Abaixo do cabeçalho */
+        left: -100%;
+        /* Oculto fora da tela */
+        height: calc(100% - 70px);
+        /* Ocupa o resto da tela */
+        width: 250px;
+        background: var(--azul);
+        padding: 20px 10px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .menu.active {
+        left: 0;
+    }
+
+    .menu li {
+        margin: 15px 0;
+    }
+
+    .menu a {
+        font-size: 1.2rem;
+    }
+
+    #cases .case {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .case-img {
+        margin: 25px 0 25px 0;
+    }
+
+    header nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    header nav ul li a {
+        font-size: 1.2em;
+    }
+
+    #cases .case {
+        text-align: center;
+        padding: 15px;
+    }
+
+    #conteudo ul li {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 537px) {
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    section {
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+
+    .container-banner-form,
+    #sobre,
+    #contato {
+        width: 100%;
+    }
+
+    .banner,
+    .form-container {
+        width: 100%;
+        margin: 0 auto;
     }
 }
 
@@ -526,7 +521,20 @@ form button:hover {
         max-width: 90%;
     }
 
-    form input, form button {
+    form input,
+    form button {
         font-size: 0.8rem;
+    }
+
+    header nav h1 {
+        font-size: 1.2em;
+    }
+
+    header nav ul li a {
+        font-size: 1em;
+    }
+
+    #cases .case blockquote {
+        font-size: 0.9em;
     }
 }

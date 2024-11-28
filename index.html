@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domina Dev - Torne-se um Dominador da Programação</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -15,11 +16,11 @@
                 <div style="display: flex;">
                     <!-- Botão do menu retrátil -->
                     <button class="menu-toggle">☰</button>
-        
+
                     <!-- Foto / Logo -->
                     <img src="images/logos/LOGO-HORIZONTAL-A-2.png" alt="Logo ou Foto" class="logo">
                 </div>
-    
+
                 <!-- Menu (telas grandes ou retrátil ao abrir) -->
                 <ul class="menu">
                     <li><a href="#sobre">Sobre</a></li>
@@ -31,13 +32,13 @@
             </div>
         </nav>
     </header>
-    
+
 
 
 
 
     <section id="sobre">
-        <div class="container mt-4">
+        <div class="container mt-4" style="text-align: center;">
             <h2>Junte-se ao Reino da Programação</h2>
             <p>Na Domina Dev, acreditamos que cada programador é um dominador em potencial, pronto para construir seu
                 reino no universo do desenvolvimento.</p>
@@ -47,30 +48,26 @@
         </div>
     </section>
 
-    <section id="conteudo">
-        <div class="container" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-            <!-- Conteúdo do lado esquerdo -->
-            <div class="conteudo-texto" style="flex: 1; min-width: 300px; max-width: 850px;">
-                <h2 class="color-laranja">O Que Você Vai Aprender?</h2>
-                <ul>
-                    <li>Aprimoramento das suas habilidades em lógica de programação.</li>
-                    <li>Técnicas práticas para elevar a sua manipulação de HTML e CSS, criando interfaces
-                        mais profissionais.</li>
-                    <li>Desenvolvimento completo de sistemas em Angular/Java.</li>
-                    <li>Implementação de Design Systems com Angular Material e Bootstrap.</li>
-                    <li>Realização de integrações e uso de métodos HTTP com eficiência.</li>
-                    <li>Aplicação de metodologias ágeis, como Scrum e Kanban, no dia a dia de projetos.</li>
-                    <li>Preparação estratégica para criação de currículo, portfólio, busca de vagas e
-                        entrevistas no mercado de trabalho.</li>
-                    <li>E muito mais!</li>
-                </ul>
-            </div>
-
-
+    <section id="conteudo" class="alinhar">
+        <div class="texto" style="flex: 1; min-width: 300px;">
+            <h2 class="color-laranja">O Que Você Vai Aprender?</h2>
+            <ul>
+                <li>Aprimoramento das suas habilidades em lógica de programação.</li>
+                <li>Técnicas práticas para elevar a sua manipulação de HTML e CSS, criando interfaces
+                    mais profissionais.</li>
+                <li>Desenvolvimento completo de sistemas em Angular/Java.</li>
+                <li>Implementação de Design Systems com Angular Material e Bootstrap.</li>
+                <li>Realização de integrações e uso de métodos HTTP com eficiência.</li>
+                <li>Aplicação de metodologias ágeis, como Scrum e Kanban, no dia a dia de projetos.</li>
+                <li>Preparação estratégica para criação de currículo, portfólio, busca de vagas e
+                    entrevistas no mercado de trabalho.</li>
+                <li>E muito mais!</li>
+            </ul>
+        </div>
+        <div class="imagem">
+            <img src="images/Todos-Dominadores.jpg" style="max-width: 500px; border-radius: 30px">
         </div>
     </section>
-
-
 
     <section id="cases">
         <div class="container">
@@ -179,9 +176,9 @@
                     2025
                 </h3>
                 <form>
-                    <input type="text" placeholder="Digite seu nome aqui" required />
-                    <input type="email" placeholder="Insira seu melhor e-mail" required />
-                    <input type="tel" placeholder="Telefone" required />
+                    <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
+                    <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
+                    <input id="telefone" type="tel" placeholder="Telefone" required />
                     <button type="submit">Entrar na lista de espera</button>
                 </form>
                 <p class="policy">
@@ -251,6 +248,41 @@
                 menu.classList.remove('active');
             }
         });
+
+        function sendEmail() {
+            // Inicialize o EmailJS
+            emailjs.init('2ya5yNRO_q9Lylc7N'); // Substitua pelo seu User ID do EmailJS
+
+            document.getElementById('cadastroForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                // Capture os valores do formulário
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+                const telefone = document.getElementById('telefone').value;
+
+                // Configurar os dados a serem enviados
+                const templateParams = {
+                    nome: nome,
+                    email: email,
+                    telefone: telefone,
+                };
+
+                // Enviar o e-mail usando EmailJS
+                emailjs
+                    .send('service_mre974a', 'template_4qpk3nd', templateParams)
+                    .then(
+                        function (response) {
+                            alert('Formulário enviado com sucesso! Obrigado.');
+                            console.log('Sucesso!', response.status, response.text);
+                        },
+                        function (error) {
+                            alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+                            console.log('Erro:', error);
+                        }
+                    );
+            });
+        }
     </script>
 </body>
 
