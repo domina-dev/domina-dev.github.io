@@ -483,22 +483,22 @@ footer {
         overflow-x: hidden;
     }
 
-    section {
+    /* section {
         width: 100%;
         margin: 0 auto;
         padding: 10px;
         box-sizing: border-box;
-    }
+    } */
 
-    .container {
+    /* .container {
         width: 100%;
         max-width: none;
         padding: 0 10px;
         box-sizing: border-box;
-    }
+    } */
 
 
-    .container-banner-form,
+    /* .container-banner-form,
     #sobre,
     #contato {
         width: 100%;
@@ -508,7 +508,7 @@ footer {
     .form-container {
         width: 100%;
         margin: 0 auto;
-    }
+    } */
 }
 
 @media (max-width: 480px) {
