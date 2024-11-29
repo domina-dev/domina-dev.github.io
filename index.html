@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://domina.dev/" />
     <meta property="og:type" content="website" />
 
-    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 </head>
@@ -220,6 +220,17 @@
     </footer>
 
     <script>
+
+        // window.onload = function () {
+        //     if (typeof grecaptcha !== 'undefined') {
+        //         grecaptcha.ready(function () {
+        //             console.log("reCAPTCHA carregado com sucesso!");
+        //         });
+        //     } else {
+        //         console.error("O script do reCAPTCHA não foi carregado.");
+        //     }
+        // };
+        
         // Selecionando todos os links com o atributo href começando com #
         const links = document.querySelectorAll('a[href^="#"]');
 
@@ -243,7 +254,6 @@
             window.open('https://wa.me/48988668130?text=Como%20faço%20para%20me%20inscrever?%0Ahttps://domina.dev/', '_blank');
         }
 
-
         // menu
         const toggleButton = document.querySelector('.menu-toggle');
         const menu = document.querySelector('.menu');
@@ -260,18 +270,27 @@
             }
         });
 
+        function limparCampos() {
+            document.getElementById('nome').value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('telefone').value = "";
+        }
+
         function sendEmail() {
             // Inicialize o EmailJS
             // emailjs.init('2xCH2QUwQR2O6wc3H'); // Substitua pelo seu User ID do EmailJS
+
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true; // Desabilita o botão
 
             emailjs.init('2xCH2QUwQR2O6wc3H');
 
             event.preventDefault(); // Impede o envio padrão do formulário
 
             // Capture os valores do formulário
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const telefone = document.getElementById('telefone').value;
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+            var telefone = document.getElementById('telefone').value;
 
             // Configurar os dados a serem enviados
             const templateParams = {
@@ -292,7 +311,12 @@
                     alert('Formulário enviado com sucesso! Obrigado.');
 
                     //Enviar email para Aluno
-                    emailjs.send(serviceGoDaddy, templateBemVindo, templateParams);
+                    emailjs.send(serviceGoDaddy, templateBemVindo, templateParams).then(
+                        function (response) {
+                            limparCampos();
+                        },
+                        function (error) { }
+                    );
                 },
                 function (error) {
                     alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
