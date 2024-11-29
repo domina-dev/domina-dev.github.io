@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domina Dev</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="64x64" href="images/logos/SÍMBOLO-1.png">
     <meta property="og:title" content="Domina.dev - Domine o Desenvolvimento Web" />
     <meta property="og:description"
         content="Aprenda a programar de forma prática e eficiente. Comece hoje sua jornada no desenvolvimento web!" />
@@ -13,10 +14,8 @@
     <meta property="og:url" content="https://domina.dev/" />
     <meta property="og:type" content="website" />
 
-    <!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <!-- <link rel="icon" href="images/logos/SÍMBOLO-1.png" type="image/x-icon"> -->
-    <link rel="icon" type="image/png" sizes="64x64" href="images/logos/SÍMBOLO-1.png">
 
 </head>
 
@@ -190,7 +189,9 @@
                     <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
-                    <button id="" onclick="sendEmail()">Entrar na lista de espera</button>
+                    <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de espera</button>
+                    <div class="g-recaptcha" data-sitekey="6LccDY4qAAAAABNiwNoc2ZPS4NxXKHCw4Tb3CQ-4"
+                        data-action="LOGIN"></div>
                 </form>
                 <p class="policy">
                     *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
@@ -299,6 +300,80 @@
                 }
             );
         }
+
+        function validateReCaptcha(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const siteKey = '6LccDY4qAAAAABNiwNoc2ZPS4NxXKHCw4Tb3CQ-4'; // Substitua pela sua chave do site
+            const apiKey = 'AIzaSyB7YdwWDIa1tcQhpe20pF23xAdfPGjShzU'; // Substitua pela sua chave de API
+            const url = `https://recaptchaenterprise.googleapis.com/v1/projects/domina-dev-1732919207478/assessments?key=${apiKey}`;
+
+            grecaptcha.ready(function () {
+                grecaptcha.execute(siteKey, { action: 'LOGIN' }).then(function (token) {
+                    // Dados a serem enviados no corpo da requisição
+                    const requestData = {
+                        event: {
+                            token: token,
+                            expectedAction: 'LOGIN',
+                            siteKey: siteKey,
+                        }
+                    };
+
+                    // Fazer a requisição POST
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestData),
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Erro: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.tokenProperties && data.tokenProperties.valid) {
+                                // Validação bem-sucedida
+                                alert('reCAPTCHA validado com sucesso!');
+                                sendEmail(); // Chama o envio do e-mail após validação
+                            } else {
+                                // Token inválido
+                                alert('reCAPTCHA inválido. Tente novamente.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao validar o reCAPTCHA:', error);
+                        });
+                });
+            });
+        }
+
+        // Seleciona os campos do formulário e o botão
+        const nomeInput = document.getElementById('nome');
+        const emailInput = document.getElementById('email');
+        const telefoneInput = document.getElementById('telefone');
+        const submitButton = document.getElementById('submitButton');
+
+        // Função para verificar se todos os campos estão preenchidos
+        function checkFormFields() {
+            const nome = nomeInput.value.trim();
+            const email = emailInput.value.trim();
+            const telefone = telefoneInput.value.trim();
+
+            // Verifica se todos os campos estão preenchidos
+            if (nome && email && telefone) {
+                submitButton.disabled = false; // Habilita o botão
+            } else {
+                submitButton.disabled = true; // Desabilita o botão
+            }
+        }
+
+        // Adiciona o evento de input para monitorar alterações nos campos
+        nomeInput.addEventListener('input', checkFormFields);
+        emailInput.addEventListener('input', checkFormFields);
+        telefoneInput.addEventListener('input', checkFormFields);
 
     </script>
 </body>

@@ -344,6 +344,21 @@ form button:hover {
     background-color: var(--roxo);
 }
 
+/* Se Disabled */
+button:disabled {
+    background-color: #d3d3d3; 
+    color: #808080; 
+    cursor: not-allowed; /* Mostra o cursor de "não permitido" */
+    pointer-events: none; /* Desabilita completamente qualquer interação */
+    border: none; /* Remove o estilo de borda, se aplicável */
+    box-shadow: none; /* Remove sombras, se aplicável */
+}
+
+/* Remove efeito de hover quando desabilitado */
+button:disabled:hover {
+    background-color: #d3d3d3;
+}
+
 /* --------------------- Políticas de privacidade form --------------------- */
 .policy {
     font-size: 0.8rem;
@@ -399,6 +414,18 @@ footer {
 }
 
 
+/* --------------------- Recaptcha --------------------- */
+.g-recaptcha {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Faz com que a div ocupe todo o espaço disponível */
+    max-width: 100%; /* Limita a largura ao tamanho do container */
+    margin: 0 auto; /* Centraliza no eixo horizontal */
+}
+
+.g-recaptcha > div {
+    width: 100%; /* Define a largura do reCAPTCHA para ocupar todo o espaço */
+}
 /* --------------------- Responsividade --------------------- */
 
 @media (max-width: 1400px) {
