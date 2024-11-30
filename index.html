@@ -198,6 +198,9 @@
                     <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
+                    <!-- Campo honeypot (invisível para humanos) -->
+                    <input type="text" name="idade" style="display: none;" autocomplete="off">
+
                     <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de
                         espera</button>
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1LT7NoBch51ZFX"></div>
@@ -351,42 +354,15 @@
         function validateReCaptcha(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
-            const secretKey = '0x4AAAAAAA1LT5CkDLbvdXT2UcwvGQyHbP0'; // Substitua pela sua chave secreta
-
-            // Obtenha o token gerado pelo Turnstile
-            const turnstileResponse = document.querySelector(".cf-turnstile input[name='cf-turnstile-response']").value;
-
-            if (!turnstileResponse) {
-                alert("Por favor, complete a validação do CAPTCHA.");
-                return;
+            const honeypotField = document.querySelector('input[name="idade"]');
+            if (honeypotField.value) {
+                // Bloqueia o envio do formulário se o campo honeypot estiver preenchido
+                event.preventDefault();
+                this.limparCampos();
+                alert("Detectamos um comportamento suspeito. Formulário não enviado.");
+            }else{
+                sendEmail();
             }
-
-            // Chamada à API de validação do Turnstile
-            fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: new URLSearchParams({
-                    secret: secretKey, // Substitua pela sua chave secreta
-                    response: turnstileResponse,
-                }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.success) {
-                        alert("CAPTCHA validado com sucesso! Formulário será enviado.");
-                        // Aqui você pode enviar os dados para o servidor final ou exibir uma mensagem de sucesso
-                        // Exemplo de envio:
-                        document.getElementById("formDominador").submit();
-                    } else {
-                        alert("Falha na validação do CAPTCHA. Tente novamente.");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Erro ao validar o CAPTCHA:", error);
-                    alert("Erro ao validar o CAPTCHA. Por favor, tente novamente.");
-                });
 
             // grecaptcha.ready(function () {
             //     grecaptcha.execute(siteKey, { action: 'LOGIN' }).then(function (token) {
