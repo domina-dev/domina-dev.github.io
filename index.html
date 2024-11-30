@@ -14,9 +14,7 @@
     <meta property="og:url" content="https://domina.dev/" />
     <meta property="og:type" content="website" />
 
-    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"></script>
-    <!-- <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"></script> -->
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -192,7 +190,8 @@
                     <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
-                    <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de espera</button>
+                    <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de
+                        espera</button>
                     <div class="g-recaptcha" data-sitekey="6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"
                         data-action="LOGIN"></div>
                 </form>
@@ -233,7 +232,7 @@
         //         console.error("O script do reCAPTCHA não foi carregado.");
         //     }
         // };
-        
+
         // Selecionando todos os links com o atributo href começando com #
         const links = document.querySelectorAll('a[href^="#"]');
 
@@ -336,45 +335,52 @@
             const url = `https://recaptchaenterprise.googleapis.com/v1/projects/domina-dev-1732919207478/assessments?key=${apiKey}`;
 
             grecaptcha.ready(function () {
-                grecaptcha.execute(siteKey, { action: 'LOGIN' }).then(function (token) {
-                    // Dados a serem enviados no corpo da requisição
-                    const requestData = {
-                        event: {
-                            token: token,
-                            expectedAction: 'LOGIN',
-                            siteKey: siteKey,
-                        }
-                    };
-
-                    // Fazer a requisição POST
-                    fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(requestData),
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`Erro: ${response.status}`);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.tokenProperties && data.tokenProperties.valid) {
-                                // Validação bem-sucedida
-                                alert('reCAPTCHA validado com sucesso!');
-                                sendEmail(); // Chama o envio do e-mail após validação
-                            } else {
-                                // Token inválido
-                                alert('reCAPTCHA inválido. Tente novamente.');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Erro ao validar o reCAPTCHA:', error);
-                        });
+                grecaptcha.execute('6LegHI4qAAAAAB6xhjJrLERuFUZdXwOpM5hv-rvy', { action: 'submit' }).then(function (token) {
+                    // Envie o token para o backend
+                    console.log("Token gerado: ", token);
                 });
             });
+
+            // grecaptcha.ready(function () {
+            //     grecaptcha.execute(siteKey, { action: 'LOGIN' }).then(function (token) {
+            //         // Dados a serem enviados no corpo da requisição
+            //         const requestData = {
+            //             event: {
+            //                 token: token,
+            //                 expectedAction: 'LOGIN',
+            //                 siteKey: siteKey,
+            //             }
+            //         };
+
+            //         // Fazer a requisição POST
+            //         fetch(url, {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //             },
+            //             body: JSON.stringify(requestData),
+            //         })
+            //             .then(response => {
+            //                 if (!response.ok) {
+            //                     throw new Error(`Erro: ${response.status}`);
+            //                 }
+            //                 return response.json();
+            //             })
+            //             .then(data => {
+            //                 if (data.tokenProperties && data.tokenProperties.valid) {
+            //                     // Validação bem-sucedida
+            //                     alert('reCAPTCHA validado com sucesso!');
+            //                     sendEmail(); // Chama o envio do e-mail após validação
+            //                 } else {
+            //                     // Token inválido
+            //                     alert('reCAPTCHA inválido. Tente novamente.');
+            //                 }
+            //             })
+            //             .catch(error => {
+            //                 console.error('Erro ao validar o reCAPTCHA:', error);
+            //             });
+            //     });
+            // });
         }
 
         // Seleciona os campos do formulário e o botão
