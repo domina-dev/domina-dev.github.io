@@ -213,9 +213,6 @@
                     nossas
                     <a href="politica-privacidade.html">política de privacidade</a>.
                 </p>
-                <p class="mt-5 mb-3 text-muted"><a href="https://github.com/cloudflare/turnstile-demo-workers"><i
-                            class="bi bi-github"></i> See code</a></p>
-                <p class="mt-5 mb-3 text-muted">Go to the <a href="/explicit">explicit render demo</a></p>
             </div>
         </div>
     </section>
@@ -359,8 +356,9 @@
                 // Bloqueia o envio do formulário se o campo honeypot estiver preenchido
                 event.preventDefault();
                 this.limparCampos();
-                alert("Detectamos um comportamento suspeito. Formulário não enviado.");
-            }else{
+                alert('Formulário enviado com sucesso! Hack Safado!.');
+                window.location.reload();
+            } else {
                 sendEmail();
             }
 

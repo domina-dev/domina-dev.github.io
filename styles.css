@@ -7,18 +7,30 @@
 }
 
 /* --------------------- Classes de Espaçamento Vertical --------------------- */
-.mt-1 { margin-top: 0.25rem; }
+.mt-1 {
+    margin-top: 0.25rem;
+}
 
-.mt-2 { margin-top: 0.50rem; }
+.mt-2 {
+    margin-top: 0.50rem;
+}
 
-.mt-3 { margin-top: 0.75rem;}
+.mt-3 {
+    margin-top: 0.75rem;
+}
 
-.mt-4 { margin-top: 1rem !important;}
+.mt-4 {
+    margin-top: 1rem !important;
+}
 
-.mt-5 { margin-top: 1.5rem; }
+.mt-5 {
+    margin-top: 1.5rem;
+}
 
 /* --------------------- Estilos Gerais --------------------- */
-.cursor-pointer { cursor: pointer; }
+.cursor-pointer {
+    cursor: pointer;
+}
 
 .alinhar {
     display: flex;
@@ -28,13 +40,21 @@
 
 
 /* --------------------- Configurações de Cores para o Texto --------------------- */
-.color-azul { color: var(--azul); }
+.color-azul {
+    color: var(--azul);
+}
 
-.color-branco { color: var(--branco) !important; }
+.color-branco {
+    color: var(--branco) !important;
+}
 
-.color-roxo { color: var(--roxo); }
+.color-roxo {
+    color: var(--roxo);
+}
 
-.color-laranja { color: var(--laranja); }
+.color-laranja {
+    color: var(--laranja);
+}
 
 /* --------------------- Estilo para Telefone rodapé --------------------- */
 .telefone {
@@ -191,6 +211,7 @@ section {
     flex: 1 1 300px;
     max-width: 850px;
 }
+
 /* --------------------- CASES --------------------- */
 #cases .case {
     display: flex;
@@ -219,6 +240,7 @@ section {
     margin: 0;
     color: var(--laranja);
 }
+
 .case-text blockquote {
     margin: 10px 0 0 0;
     font-style: italic;
@@ -346,12 +368,16 @@ form button:hover {
 
 /* Se Disabled */
 button:disabled {
-    background-color: #d3d3d3; 
-    color: #808080; 
-    cursor: not-allowed; /* Mostra o cursor de "não permitido" */
-    pointer-events: none; /* Desabilita completamente qualquer interação */
-    border: none; /* Remove o estilo de borda, se aplicável */
-    box-shadow: none; /* Remove sombras, se aplicável */
+    background-color: #d3d3d3;
+    color: #808080;
+    cursor: not-allowed;
+    /* Mostra o cursor de "não permitido" */
+    pointer-events: none;
+    /* Desabilita completamente qualquer interação */
+    border: none;
+    /* Remove o estilo de borda, se aplicável */
+    box-shadow: none;
+    /* Remove sombras, se aplicável */
 }
 
 /* Remove efeito de hover quando desabilitado */
@@ -415,17 +441,8 @@ footer {
 
 
 /* --------------------- Recaptcha --------------------- */
-.g-recaptcha {
-    display: flex;
-    justify-content: center;
-    width: 100%; /* Faz com que a div ocupe todo o espaço disponível */
-    max-width: 100%; /* Limita a largura ao tamanho do container */
-    margin: 0 auto; /* Centraliza no eixo horizontal */
-}
 
-.g-recaptcha > div {
-    width: 100%; /* Define a largura do reCAPTCHA para ocupar todo o espaço */
-}
+
 /* --------------------- Responsividade --------------------- */
 
 @media (max-width: 1400px) {
