@@ -14,12 +14,17 @@
     <meta property="og:url" content="https://domina.dev/" />
     <meta property="og:type" content="website" />
 
-    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK"></script> -->
-    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK"></script> -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render="></script> -->
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render="></script> -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer> -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+</head>
+</script>
 
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 </head>
 
@@ -189,14 +194,14 @@
                 <h3>Realize seu cadastro gratuito para ter acesso <span class="highlight">VIP</span> à nossa turma de
                     2025
                 </h3>
-                <form>
+                <form action="" method="POST">
                     <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
                     <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de
                         espera</button>
-                    <div class="g-recaptcha" data-sitekey="6LcOLY4qAAAAAFTTdC0MTrNMzG4nugcbx-Qr9qSI"></div>
-                    <!-- <div class="g-recaptcha" data-sitekey="6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK"
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1LT7NoBch51ZFX"></div>
+                    <!-- <div class="g-recaptcha" data-sitekey=""
                         data-action="LOGIN"></div> -->
                 </form>
                 <p class="policy">
@@ -205,6 +210,9 @@
                     nossas
                     <a href="politica-privacidade.html">política de privacidade</a>.
                 </p>
+                <p class="mt-5 mb-3 text-muted"><a href="https://github.com/cloudflare/turnstile-demo-workers"><i
+                            class="bi bi-github"></i> See code</a></p>
+                <p class="mt-5 mb-3 text-muted">Go to the <a href="/explicit">explicit render demo</a></p>
             </div>
         </div>
     </section>
@@ -226,6 +234,15 @@
     </footer>
 
     <script>
+
+        var onloadCallback = function () {
+            alert("grecaptcha is ready!");
+        };
+
+
+
+
+
 
         // window.onload = function () {
         //     if (typeof grecaptcha !== 'undefined') {
@@ -334,7 +351,7 @@
         function validateReCaptcha(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
-            const siteKey = '6LcOLY4qAAAAAFTTdC0MTrNMzG4nugcbx-Qr9qSI'; // Substitua pela sua chave do site
+            const siteKey = '6LepMo4qAAAAAImmA4V5C-3IDDftHNfo_hh55V51'; // Substitua pela sua chave do site
             const apiKey = 'AIzaSyB7YdwWDIa1tcQhpe20pF23xAdfPGjShzU'; // Substitua pela sua chave de API
             const url = `https://recaptchaenterprise.googleapis.com/v1/projects/domina-dev-1732919207478/assessments?key=${apiKey}`;
 
