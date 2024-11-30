@@ -190,7 +190,7 @@
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
                     <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de espera</button>
-                    <div class="g-recaptcha" data-sitekey="6LdR8o0qAAAAAHMjdXFkr7bw27eWsdLRwCrc0TCp"
+                    <div class="g-recaptcha" data-sitekey="6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"
                         data-action="LOGIN"></div>
                 </form>
                 <p class="policy">
@@ -328,7 +328,7 @@
         function validateReCaptcha(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
-            const siteKey = '6LdR8o0qAAAAAHMjdXFkr7bw27eWsdLRwCrc0TCp'; // Substitua pela sua chave do site
+            const siteKey = '6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy'; // Substitua pela sua chave do site
             const apiKey = 'AIzaSyB7YdwWDIa1tcQhpe20pF23xAdfPGjShzU'; // Substitua pela sua chave de API
             const url = `https://recaptchaenterprise.googleapis.com/v1/projects/domina-dev-1732919207478/assessments?key=${apiKey}`;
 
@@ -400,7 +400,7 @@
         telefoneInput.addEventListener('input', checkFormFields);
 
     </script>
-    <!-- <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LccDY4qAAAAABNiwNoc2ZPS4NxXKHCw4Tb3CQ-4"></script> -->
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"></script>
 </body>
 
 </html>
