@@ -14,7 +14,10 @@
     <meta property="og:url" content="https://domina.dev/" />
     <meta property="og:type" content="website" />
 
-    <script src="https://www.google.com/recaptcha/api.js?render=6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"></script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK"></script> -->
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK"></script> -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -192,8 +195,9 @@
                     <input id="telefone" type="tel" placeholder="Telefone" required />
                     <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de
                         espera</button>
-                    <div class="g-recaptcha" data-sitekey="6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy"
-                        data-action="LOGIN"></div>
+                    <div class="g-recaptcha" data-sitekey="6LcOLY4qAAAAAFTTdC0MTrNMzG4nugcbx-Qr9qSI"></div>
+                    <!-- <div class="g-recaptcha" data-sitekey="6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK"
+                        data-action="LOGIN"></div> -->
                 </form>
                 <p class="policy">
                     *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
@@ -330,12 +334,12 @@
         function validateReCaptcha(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
-            const siteKey = '6LegHI4qAAAAAB6xhjUrLERuFUZdXwOpM5hv-rvy'; // Substitua pela sua chave do site
+            const siteKey = '6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK'; // Substitua pela sua chave do site
             const apiKey = 'AIzaSyB7YdwWDIa1tcQhpe20pF23xAdfPGjShzU'; // Substitua pela sua chave de API
             const url = `https://recaptchaenterprise.googleapis.com/v1/projects/domina-dev-1732919207478/assessments?key=${apiKey}`;
 
             grecaptcha.ready(function () {
-                grecaptcha.execute('6LegHI4qAAAAAB6xhjJrLERuFUZdXwOpM5hv-rvy', { action: 'submit' }).then(function (token) {
+                grecaptcha.execute('6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK', { action: 'submit' }).then(function (token) {
                     // Envie o token para o backend
                     console.log("Token gerado: ", token);
                 });
