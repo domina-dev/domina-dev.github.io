@@ -334,12 +334,12 @@
         function validateReCaptcha(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
-            const siteKey = '6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK'; // Substitua pela sua chave do site
+            const siteKey = '6LcOLY4qAAAAAFTTdC0MTrNMzG4nugcbx-Qr9qSI'; // Substitua pela sua chave do site
             const apiKey = 'AIzaSyB7YdwWDIa1tcQhpe20pF23xAdfPGjShzU'; // Substitua pela sua chave de API
             const url = `https://recaptchaenterprise.googleapis.com/v1/projects/domina-dev-1732919207478/assessments?key=${apiKey}`;
 
             grecaptcha.ready(function () {
-                grecaptcha.execute('6LePLI4qAAAAAMjeO58ZJHEA30hPTiRTEiT2bKLK', { action: 'submit' }).then(function (token) {
+                grecaptcha.execute(siteKey, { action: 'submit' }).then(function (token) {
                     // Envie o token para o backend
                     console.log("Token gerado: ", token);
                 });
