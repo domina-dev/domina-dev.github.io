@@ -199,7 +199,7 @@
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
                     <!-- Campo honeypot (invisível para humanos) -->
-                    <input type="text" name="idade" style="display: none;" autocomplete="off">
+                    <input id="idade" type="text" name="idade" style="display: none;" autocomplete="off">
 
                     <button id="submitButton" onclick="validateReCaptcha(event)" disabled>Entrar na lista de
                         espera</button>
@@ -297,53 +297,65 @@
 
         function sendEmail() {
             // Inicialize o EmailJS
-            // emailjs.init('2xCH2QUwQR2O6wc3H'); // Substitua pelo seu User ID do EmailJS
 
-            const submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true; // Desabilita o botão
+            const lastSubmission = localStorage.getItem('lastSubmission');
+            const now = Date.now();
 
-            emailjs.init('2xCH2QUwQR2O6wc3H');
+            // Permitir envio apenas a cada 5 minutos (300000 ms)
+            if (lastSubmission && now - lastSubmission < 300000) {
+                alert("Sua solicitação foi recebida com sucesso. Nossa equipe entrará em contato em breve. Verifique seu e-mail para mais informações.");
+                return;
+            } else {
 
-            event.preventDefault(); // Impede o envio padrão do formulário
+                localStorage.setItem('lastSubmission', now);
+                const submitButton = document.getElementById('submitButton');
+                submitButton.disabled = true; // Desabilita o botão
 
-            // Capture os valores do formulário
-            var nome = document.getElementById('nome').value;
-            var email = document.getElementById('email').value;
-            var telefone = document.getElementById('telefone').value;
-            var ip = USER_IP;
+                emailjs.init('2xCH2QUwQR2O6wc3H');
 
-            // Configurar os dados a serem enviados
-            const templateParams = {
-                nome: nome,
-                email: email,
-                telefone: telefone,
-                ip: ip
-            };
-            console.log("templateParams::: ", templateParams);
-            console.log("emailjs::: ", emailjs);
+                event.preventDefault(); // Impede o envio padrão do formulário
 
-            // Enviar o e-mail usando EmailJS
-            const serviceGoDaddy = "service_mre974a";
-            const templateBemVindo = "template_mbazqqi";
-            const templateNovoInteresse = "template_4qpk3nd";
+                // Capture os valores do formulário
+                var nome = document.getElementById('nome').value;
+                var email = document.getElementById('email').value;
+                var telefone = document.getElementById('telefone').value;
+                var idade = document.getElementById('idade').value;
+                var ip = USER_IP;
 
-            emailjs.send(serviceGoDaddy, templateNovoInteresse, templateParams).then(
-                function (response) {
-                    alert('Formulário enviado com sucesso! Obrigado.');
+                // Configurar os dados a serem enviados
+                const templateParams = {
+                    nome: nome,
+                    email: email,
+                    telefone: telefone,
+                    idade: idade,
+                    ip: ip
+                };
+                console.log("templateParams::: ", templateParams);
+                console.log("emailjs::: ", emailjs);
 
-                    //Enviar email para Aluno
-                    emailjs.send(serviceGoDaddy, templateBemVindo, templateParams).then(
-                        function (response) {
-                            limparCampos();
-                        },
-                        function (error) { }
-                    );
-                },
-                function (error) {
-                    alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
-                    console.log('Erro:', error);
-                }
-            );
+                // Enviar o e-mail usando EmailJS
+                const serviceGoDaddy = "service_mre974a";
+                const templateBemVindo = "template_mbazqqi";
+                const templateNovoInteresse = "template_4qpk3nd";
+
+                emailjs.send(serviceGoDaddy, templateNovoInteresse, templateParams).then(
+                    function (response) {
+                        alert('Formulário enviado com sucesso! Obrigado.');
+
+                        //Enviar email para Aluno
+                        emailjs.send(serviceGoDaddy, templateBemVindo, templateParams).then(
+                            function (response) {
+                                limparCampos();
+                            },
+                            function (error) { }
+                        );
+                    },
+                    function (error) {
+                        alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+                        console.log('Erro:', error);
+                    }
+                );
+            }
         }
 
         function validateReCaptcha(event) {
