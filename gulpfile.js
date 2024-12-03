@@ -5,11 +5,11 @@ const browserSync = require('browser-sync').create();
 // Caminhos dos arquivos
 const paths = {
     scripts: {
-        src: 'src/views/js/script.js', // Arquivo JS original
-        dest: 'src/views/js/'         // Pasta onde será salvo o min.js
+        src: 'src/views/js/script.js',     // Atualizado para refletir o novo local
+        dest: 'src/views/js/'              // Pasta onde será salvo o min.js
     },
     html: {
-        src: 'src/**/*.html'          // Arquivos HTML
+        src: './*.html'              // Agora observando os arquivos HTML na raiz
     }
 };
 
@@ -28,10 +28,10 @@ gulp.task('minify-and-obfuscate', function () {
 gulp.task('serve', function () {
     browserSync.init({
         server: {
-            baseDir: './src/views',  // Diretório base do servidor
+            baseDir: './',  // Diretório base atualizado para a raiz do projeto
         },
         port: 3000,
-        logLevel: "debug"     // Logs detalhados
+        logLevel: "debug" // Logs detalhados
     });
 
     gulp.watch(paths.scripts.src, gulp.series('minify-and-obfuscate')); // JS
