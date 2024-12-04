@@ -54,6 +54,10 @@ jobs:
       # 6. Executar o build com Gulp
       - name: Build project
         run: gulp minify-and-obfuscate 
+      
+      # 6.1. Verifica arquivo script.min.js
+      - name: Verify build output
+        run: ls -R ./src/views/js/
 
       # 7. Subir artefatos para a página  
       - name: Upload artifact
