@@ -3,6 +3,7 @@ import terser from 'gulp-terser';
 import browserSync from 'browser-sync';
 import rename from 'gulp-rename';
 import { deleteAsync } from 'del';
+import javascriptObfuscator from 'gulp-javascript-obfuscator';
 
 const browserSyncInstance = browserSync.create();
 
@@ -25,18 +26,25 @@ const paths = {
 // Tarefa para minificar e criar o arquivo `.min.js`
 gulp.task('minify', function () {
     if (isProduction) {
-        console.log('Ambiente de produção: Minificação iniciada.');
+        console.log('Ambiente de produção: Minificação e ofuscação iniciadas.');
         return gulp.src(paths.scripts.original, { allowEmpty: true })
             .pipe(terser({
                 compress: true,
                 mangle: { toplevel: true }
             }))
+            .pipe(javascriptObfuscator({
+                compact: true, // Mantém o código o menor possível
+                controlFlowFlattening: true, // Adiciona controle de fluxo para dificultar leitura
+                deadCodeInjection: true, // Insere código "morto" para confundir
+                renameGlobals: true, // Renomeia variáveis globais
+                stringArrayEncoding: ['base64'] // Codifica strings para maior proteção
+            }))
             .pipe(rename({ suffix: '.min' }))
-            .pipe(gulp.dest(paths.scripts.dest)) // Salva o arquivo minificado
+            .pipe(gulp.dest(paths.scripts.dest)) // Salva o arquivo minificado e ofuscado
             .pipe(browserSyncInstance.stream());
     } else {
         console.log('Ambiente de desenvolvimento: Minificação ignorada.');
-        return gulp.src(paths.scripts.original) // Passa o arquivo original sem alterações
+        return gulp.src(paths.scripts.original)
             .pipe(gulp.dest(paths.scripts.dest));
     }
 });
