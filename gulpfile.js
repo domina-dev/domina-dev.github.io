@@ -33,11 +33,17 @@ gulp.task('minify', function () {
                 mangle: { toplevel: true }
             }))
             .pipe(javascriptObfuscator({
-                compact: true, // Mantém o código o menor possível
-                controlFlowFlattening: true, // Adiciona controle de fluxo para dificultar leitura
-                deadCodeInjection: true, // Insere código "morto" para confundir
-                renameGlobals: true, // Renomeia variáveis globais
-                stringArrayEncoding: ['base64'] // Codifica strings para maior proteção
+                compact: true,                     // Minimiza ainda mais o código
+                controlFlowFlattening: true,       // Dificulta a leitura do controle de fluxo
+                controlFlowFlatteningThreshold: 1, // Aplica 100% no controle de fluxo
+                deadCodeInjection: true,           // Insere código "morto" para confundir
+                deadCodeInjectionThreshold: 0.4,   // Ajuste o percentual de código morto
+                renameGlobals: true,               // Renomeia variáveis globais
+                selfDefending: true,               // Adiciona proteção contra depuração
+                stringArray: true,                 // Move strings para arrays
+                stringArrayEncoding: ['base64'],   // Codifica strings em Base64
+                stringArrayThreshold: 1,           // Move todas as strings para arrays
+                disableConsoleOutput: true         // Remove chamadas ao console
             }))
             .pipe(rename({ suffix: '.min' }))
             .pipe(gulp.dest(paths.scripts.dest)) // Salva o arquivo minificado e ofuscado
