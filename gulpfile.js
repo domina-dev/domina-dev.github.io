@@ -1,42 +1,32 @@
 const gulp = require('gulp');
 const terser = require('gulp-terser');
-const browserSync = require('browser-sync').create();
+const rename = require('gulp-rename');
 
-// Caminhos dos arquivos
+// Caminhos
 const paths = {
     scripts: {
-        src: 'src/views/js/script.js',     // Atualizado para refletir o novo local
-        dest: 'src/views/js/'              // Pasta onde será salvo o min.js
-    },
-    html: {
-        src: './*.html'              // Agora observando os arquivos HTML na raiz
+        src: 'src/views/js/test-file.js',
+        dest: 'src/views/js/'
     }
 };
 
-// Tarefa para ofuscar e gerar min.js
+// Minificação e Ofuscação
 gulp.task('minify-and-obfuscate', function () {
-    return gulp.src(paths.scripts.src)
+    return gulp.src(paths.scripts.src, { allowEmpty: true })
         .pipe(terser({
-            compress: true,
-            mangle: { toplevel: true }
+            compress: {
+                passes: 2, // Realiza múltiplas passagens para maior compressão
+                drop_console: true // Remove `console.log` e outros comandos de depuração
+            },
+            mangle: {
+                toplevel: true // Ofusca nomes no escopo superior
+            }
+        }).on('error', function (err) {
+            console.error('Erro ao minificar o arquivo:', err.message);
         }))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(paths.scripts.dest))
-        .pipe(browserSync.stream()); // Atualiza o navegador
+        .on('end', function () {
+            console.log('Arquivo minificado e ofuscado salvo com sucesso!');
+        });
 });
-
-// Tarefa para iniciar o servidor
-gulp.task('serve', function () {
-    browserSync.init({
-        server: {
-            baseDir: './',  // Diretório base atualizado para a raiz do projeto
-        },
-        port: 3000,
-        logLevel: "debug" // Logs detalhados
-    });
-
-    gulp.watch(paths.scripts.src, gulp.series('minify-and-obfuscate')); // JS
-    gulp.watch(paths.html.src).on('change', browserSync.reload);        // HTML
-});
-
-// Tarefa padrão
-gulp.task('default', gulp.series('minify-and-obfuscate', 'serve'));
