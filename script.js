@@ -117,7 +117,7 @@ function sendEmail() {
                 alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
                 console.log('Erro:', error);
             }
-        );
+        ).catch(error => console.error('Erro ao enviar:', error));
     }
 }
 
