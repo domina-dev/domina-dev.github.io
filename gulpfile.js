@@ -25,6 +25,7 @@ const paths = {
 // Tarefa para minificar e criar o arquivo `.min.js`
 gulp.task('minify', function () {
     if (isProduction) {
+        console.log('Ambiente de produção: Minificação iniciada.');
         return gulp.src(paths.scripts.original, { allowEmpty: true })
             .pipe(terser({
                 compress: true,
@@ -47,6 +48,7 @@ gulp.task('clean-js', async function () {
             `${paths.scripts.dest}*.js`,        // Apaga todos os arquivos .js
             `!${paths.scripts.dest}*.min.js`   // Exceto os arquivos minificados
         ]);
+        console.log('Ambiente de produção: Exclusão de arquivos executada.');
     } else {
         console.log('Ambiente de desenvolvimento: Exclusão de arquivos ignorada.');
     }
