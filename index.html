@@ -106,6 +106,20 @@
             </div> -->
 
             <div class="case">
+                <img src="src/views/images/Bruno-Barros.jpeg" alt="Foto de Bruno Barros" class="case-img">
+                <div class="case-text">
+                    <h3>Bruno Barros</h3>
+                    <p><strong>Desenvolvedor Pleno | Java | JavaScript | TypeScript | React</strong></p>
+                    <blockquote>“Participar de uma das mentorias da Domina Dev foi muito importante para o meu
+                        desenvolvimento na área tech. O Vitor foi um pilar essencial na minha carreira como dev, me
+                        impulsionando a continuar na área com suas trocas de experiências e orientações, que me ajudaram
+                        a seguir caminhos mais assertivos no mercado. Desde que o conheço, Vitor está sempre disposto a
+                        compartilhar seu sucesso com quem o cerca, sendo um exemplo de pessoa e profissional. Sei que,
+                        mesmo à distância, eu posso contar com ele.”</blockquote>
+                </div>
+            </div>
+
+            <div class="case">
                 <img src="src/views/images/guilherme.png.jpg" alt="Foto de Guilherme Pedro" class="case-img">
                 <div class="case-text">
                     <h3>Guilherme Pedro</h3>
@@ -201,7 +215,8 @@
                     <!-- Campo honeypot (invisível para humanos) -->
                     <input id="idade" type="text" name="idade" style="display: none;" autocomplete="off">
 
-                    <button id="submitButton" type="button" onclick="validateReCaptcha(event)" disabled>Entrar na lista de
+                    <button id="submitButton" type="button" onclick="validateReCaptcha(event)" disabled>Entrar na lista
+                        de
                         espera</button>
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1LT7NoBch51ZFX"></div>
                     <!-- <div class="g-recaptcha" data-sitekey=""
@@ -242,7 +257,7 @@
         script.src = isProduction
             ? './src/views/js/script.min.js'  // Ambiente de produção (raiz)
             : './src/views/js/script.js';  // Ambiente de desenvolvimento
-            
+
 
         document.head.appendChild(script);
     </script>
