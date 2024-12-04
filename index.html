@@ -240,9 +240,9 @@
 
         const script = document.createElement('script');
         script.src = isProduction
-            ? 'src/views/js/script.min.js'  // Ambiente de produção (raiz)
-            : 'src/views/js/script.js';  // Ambiente de desenvolvimento
-
+            ? './src/views/js/script.min.js'  // Ambiente de produção (raiz)
+            : './src/views/js/script.js';  // Ambiente de desenvolvimento
+            
 
         document.head.appendChild(script);
     </script>
