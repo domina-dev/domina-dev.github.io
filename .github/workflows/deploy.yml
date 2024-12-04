@@ -26,7 +26,7 @@ jobs:
 
       # 4. Executar o build com Gulp
       - name: Build project
-        run: npm run buld # Executa o comando gulp a partir do npm
+        run: gulp minify-and-obfuscate # Executa o comando gulp a partir do npm
 
       # 5. Publicar no GitHub Pages
       - name: Deploy to GitHub Pages
