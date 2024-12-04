@@ -6,6 +6,9 @@ import { deleteAsync } from 'del';
 
 const browserSyncInstance = browserSync.create();
 
+// Variável para determinar o ambiente (produção ou desenvolvimento)
+const isProduction = process.env.NODE_ENV === 'production';
+
 // Caminhos dos arquivos
 const paths = {
     scripts: {
@@ -21,22 +24,32 @@ const paths = {
 
 // Tarefa para minificar e criar o arquivo `.min.js`
 gulp.task('minify', function () {
-    return gulp.src(paths.scripts.original, { allowEmpty: true })
-        .pipe(terser({
-            compress: true,
-            mangle: { toplevel: true }
-        }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest(paths.scripts.dest)) // Salva o arquivo minificado
-        .pipe(browserSyncInstance.stream());
+    if (isProduction) {
+        return gulp.src(paths.scripts.original, { allowEmpty: true })
+            .pipe(terser({
+                compress: true,
+                mangle: { toplevel: true }
+            }))
+            .pipe(rename({ suffix: '.min' }))
+            .pipe(gulp.dest(paths.scripts.dest)) // Salva o arquivo minificado
+            .pipe(browserSyncInstance.stream());
+    } else {
+        console.log('Ambiente de desenvolvimento: Minificação ignorada.');
+        return gulp.src(paths.scripts.original) // Passa o arquivo original sem alterações
+            .pipe(gulp.dest(paths.scripts.dest));
+    }
 });
 
-// Tarefa para apagar todos os arquivos `.js` exceto os `.min.js`
+// Tarefa para apagar os arquivos `.js` com base no ambiente
 gulp.task('clean-js', async function () {
-    await deleteAsync([
-        `${paths.scripts.dest}*.js`,        // Apaga todos os arquivos .js
-        `!${paths.scripts.dest}*.min.js`   // Exceto os arquivos minificados
-    ]);
+    if (isProduction) {
+        await deleteAsync([
+            `${paths.scripts.dest}*.js`,        // Apaga todos os arquivos .js
+            `!${paths.scripts.dest}*.min.js`   // Exceto os arquivos minificados
+        ]);
+    } else {
+        console.log('Ambiente de desenvolvimento: Exclusão de arquivos ignorada.');
+    }
 });
 
 // Tarefa combinada para minificar e limpar
