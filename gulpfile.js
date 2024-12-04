@@ -37,7 +37,7 @@ gulp.task('minify', function () {
                 controlFlowFlattening: true,       // Dificulta a leitura do controle de fluxo
                 controlFlowFlatteningThreshold: 1, // Aplica 100% no controle de fluxo
                 deadCodeInjection: true,           // Insere código "morto" para confundir
-                deadCodeInjectionThreshold: 0.4,   // Ajuste o percentual de código morto
+                deadCodeInjectionThreshold: 1,     // Ajuste o percentual de código morto
                 renameGlobals: true,               // Renomeia variáveis globais
                 selfDefending: true,               // Adiciona proteção contra depuração
                 stringArray: true,                 // Move strings para arrays
