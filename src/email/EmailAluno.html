@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #ff5722;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0033cc;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            background-color: #0033cc;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>Bem-vindo, Dominador!</h1>
+        </div>
+        <div class="content">
+            <p>Olá, {{nome}},</p>
+            <p>Recebemos o seu interesse em participar da nossa jornada na <strong>Domina Dev</strong>. Estamos empolgados para ajudá-lo a construir seu reino e dominar o mercado!</p>
+            <p>Em breve, um de nossos especialistas entrará em contato com você para fornecer mais informações sobre a turma de 2025.</p>
+            <p>Se tiver dúvidas enquanto isso, sinta-se à vontade para responder este e-mail.</p>
+            <a href="https://domina.dev" class="button">Acompanhe a Domina Dev</a>
+        </div>
+        <div class="footer">
+            <p>© 2024 Domina Dev. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

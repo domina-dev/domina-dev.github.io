@@ -1,0 +1,29 @@
+{
+  "name": "domina-dev.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp minify-and-obfuscate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domina-dev/landing-page.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/domina-dev/landing-page/issues"
+  },
+  "homepage": "https://github.com/domina-dev/landing-page#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "del": "^8.0.0",
+    "gulp": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^2.1.0"
+  }
+}
