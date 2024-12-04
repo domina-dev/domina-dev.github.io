@@ -47,10 +47,15 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      # 5. Executar o build com Gulp
+      # 5. Definir NODE_ENV como production
+      - name: Set environment to production
+        run: echo "NODE_ENV=production" >> $GITHUB_ENV
+
+      # 6. Executar o build com Gulp
       - name: Build project
         run: gulp minify-and-obfuscate 
-        
+
+      # 7. Subir artefatos para a página  
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
