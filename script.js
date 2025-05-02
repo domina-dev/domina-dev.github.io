@@ -100,7 +100,7 @@ function sendEmail() {
         const serviceGoDaddy = "service_mre974a";
         const templateBemVindo = "template_mbazqqi";
         const templateNovoInteresse = "template_4qpk3nd";
-
+        
         emailjs.send(serviceGoDaddy, templateNovoInteresse, templateParams).then(
             function (response) {
                 alert('Formulário enviado com sucesso! Obrigado.');
