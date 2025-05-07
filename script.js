@@ -82,6 +82,7 @@ function sendEmail() {
         var nome = document.getElementById('nome').value;
         var email = document.getElementById('email').value;
         var telefone = document.getElementById('telefone').value;
+        var sexo = document.getElementById('sexo').value;
         var idade = document.getElementById('idade').value;
         var ip = USER_IP;
 
@@ -90,6 +91,8 @@ function sendEmail() {
             nome: nome,
             email: email,
             telefone: telefone,
+            sexo: sexo,
+            mensagemBoasVindas: sexo == 'M' ? 'Bem-vindo, Dominador!' : 'Bem-vinda, Dominadora!',
             idade: idade,
             ip: ip
         };
@@ -181,6 +184,7 @@ function validateReCaptcha(event) {
 const nomeInput = document.getElementById('nome');
 const emailInput = document.getElementById('email');
 const telefoneInput = document.getElementById('telefone');
+const sexoInput = document.getElementById('sexo');
 const submitButton = document.getElementById('submitButton');
 
 // Função para verificar se todos os campos estão preenchidos
@@ -188,9 +192,10 @@ function checkFormFields() {
     const nome = nomeInput.value.trim();
     const email = emailInput.value.trim();
     const telefone = telefoneInput.value.trim();
+    const sexo = sexoInput.value.trim();
 
     // Verifica se todos os campos estão preenchidos
-    if (nome && email && telefone) {
+    if (nome && email && telefone && sexo) {
         submitButton.disabled = false; // Habilita o botão
     } else {
         submitButton.disabled = true; // Desabilita o botão
@@ -201,3 +206,4 @@ function checkFormFields() {
 nomeInput.addEventListener('input', checkFormFields);
 emailInput.addEventListener('input', checkFormFields);
 telefoneInput.addEventListener('input', checkFormFields);
+sexoInput.addEventListener('input', checkFormFields);

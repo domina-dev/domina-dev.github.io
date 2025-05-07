@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #EDE9E0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #FC561E;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #000144;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            background-color: #000144;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>{{mensagemBoasVindas}}</h1>
+        </div>
+        <div class="content">
+            <p>Olá, {{nome}},</p>
+            <p>A jornada está prestes a começar e sua chance de dominar o mercado é agora.</p>
+            <p>As inscrições estão abertas para a turma de 2025 da <strong>Domina Dev</strong>. Para garantir sua vaga, clique no botão abaixo e finalize seu pagamento com segurança pelo Mercado Pago.</p>
+            <a href="https://mpago.la/22k6GnC" class="button">Garantir Minha Vaga Agora</a>
+            <p>Se tiver dúvidas, é só responder este e-mail. Estamos prontos para te receber no Reino!</p>
+        </div>
+        <div class="footer">
+            <p>© 2025 Domina Dev. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

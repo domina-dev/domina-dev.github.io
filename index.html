@@ -42,6 +42,7 @@
 
                 <!-- Menu (telas grandes ou retrátil ao abrir) -->
                 <ul class="menu">
+                    <li><a href="./src/views/pagamento-confirmado.html">Teste</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#conteudo">Conteúdo</a></li>
                     <li><a href="#cases">Cases</a></li>
@@ -212,6 +213,11 @@
                     <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
                     <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
                     <input id="telefone" type="tel" placeholder="Telefone" required />
+                    <select id="sexo" name="sexo" required style="width: 100%; border: 1px solid #ccc; border-radius: 5px;">
+                        <option value="" disabled selected>Selecione seu sexo</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
                     <!-- Campo honeypot (invisível para humanos) -->
                     <input id="idade" type="text" name="idade" style="display: none;" autocomplete="off">
 
