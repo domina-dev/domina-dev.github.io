@@ -124,7 +124,7 @@ function sendEmail() {
     }
 }
 
-function validateReCaptcha(event) {
+window.validateReCaptcha = function(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
 
     const honeypotField = document.querySelector('input[name="idade"]');
