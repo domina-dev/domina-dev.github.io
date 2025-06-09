@@ -192,7 +192,7 @@ function checkFormFields() {
     const nome = nomeInput.value.trim();
     const email = emailInput.value.trim();
     const telefone = telefoneInput.value.trim();
-    const sexo = sexoInput.value.trim();
+    // const sexo = sexoInput.value.trim();
 
     // Verifica se todos os campos estão preenchidos
     // if (nome && email && telefone && sexo) {
@@ -207,4 +207,4 @@ function checkFormFields() {
 nomeInput.addEventListener('input', checkFormFields);
 emailInput.addEventListener('input', checkFormFields);
 telefoneInput.addEventListener('input', checkFormFields);
-sexoInput.addEventListener('input', checkFormFields);
+// sexoInput.addEventListener('input', checkFormFields);
