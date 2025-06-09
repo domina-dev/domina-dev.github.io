@@ -195,7 +195,8 @@ function checkFormFields() {
     const sexo = sexoInput.value.trim();
 
     // Verifica se todos os campos estão preenchidos
-    if (nome && email && telefone && sexo) {
+    // if (nome && email && telefone && sexo) {
+    if (nome && email && telefone) {
         submitButton.disabled = false; // Habilita o botão
     } else {
         submitButton.disabled = true; // Desabilita o botão
