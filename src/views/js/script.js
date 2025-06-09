@@ -66,7 +66,7 @@ function sendEmail() {
 
     // Permitir envio apenas a cada 5 minutos (300000 ms)
     if (lastSubmission && now - lastSubmission < 300000) {
-        alert("Sua solicitação foi recebida com sucesso. Nossa equipe entrará em contato em breve. Verifique seu e-mail para mais informações.");
+        alert("Verifique seu e-mail para finalizar a inscrição.");
         return;
     } else {
 
@@ -96,8 +96,6 @@ function sendEmail() {
             idade: idade,
             ip: ip
         };
-        console.log("templateParams::: ", templateParams);
-        console.log("emailjs::: ", emailjs);
 
         // Enviar o e-mail usando EmailJS
         const serviceGoDaddy = "service_mre974a";
@@ -113,7 +111,9 @@ function sendEmail() {
                     function (response) {
                         limparCampos();
                     },
-                    function (error) { }
+                    function (error) {
+                        console.log('Erro:', error);
+                     }
                 );
             },
             function (error) {
@@ -124,7 +124,7 @@ function sendEmail() {
     }
 }
 
-window.validateReCaptcha = function(event) {
+function validateReCaptcha(event) {
     event.preventDefault(); // Impede o envio padrão do formulário
 
     const honeypotField = document.querySelector('input[name="idade"]');

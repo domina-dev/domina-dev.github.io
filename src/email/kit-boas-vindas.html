@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #EDE9E0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .header {
+      background-color: #000144;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+    .content {
+      padding: 20px;
+    }
+    .footer {
+      background-color: #FC561E;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Nova Notificação da Domina Dev</h1>
+    </div>
+
+    <div class="content">
+      <p>Olá, Vítor,</p>
+      <p><strong>Endereço para envio do Kit de Boas-Vindas:</strong></p>
+      <ul>
+        <li><strong>Nome:</strong> {{nome}}</li>
+        <li><strong>Resolveu o Enigma?:</strong> {{conseguiuEnigma}}</li>
+        <li><strong>CEP:</strong> {{cep}}</li>
+        <li><strong>Rua:</strong> {{logradouro}}</li>
+        <li><strong>Número:</strong> {{numero}}</li>
+        <li><strong>Complemento:</strong> {{complemento}}</li>
+        <li><strong>Bairro:</strong> {{bairro}}</li>
+        <li><strong>Cidade:</strong> {{cidade}}</li>
+        <li><strong>Estado:</strong> {{estado}}</li>
+      </ul>
+
+      <p>Entre em contato o mais rápido possível e providencie o envio. O castelo aguarda!</p>
+    </div>
+
+    <div class="footer">
+      <p>© 2024 Domina Dev. Painel de Administração.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -161,6 +161,8 @@
   </style>
 </head>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <body>
   <div id="tsparticles"></div>
 
@@ -190,6 +192,17 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 
   <script>
+    var USER_IP = undefined;
+    // Captura o IP ao carregar a página
+    async function getIPAddress() {
+      try {
+        // Faz a solicitação a um serviço externo
+        const response = await fetch("https://api.ipify.org?format=json");
+        const data = await response.json();
+        USER_IP = data.ip
+      } catch (error) { }
+    }
+
     function abrirModal() {
       const musica = document.getElementById('musica');
       musica.volume = 0.5;
@@ -249,35 +262,40 @@
       }
     });
   </script>
-<!-- Começo -->
-<script>
+  <!-- Começo -->
+  <script>
     let codigoGerado = '';
-  
+    let conseguiuEnigma = false;
+    let tentativas = 0;
+
     function abrirModal() {
       const musica = document.getElementById('musica');
       musica.volume = 0.5;
       musica.play();
-  
+
       const modal = document.getElementById('modalPergaminho');
       codigoGerado = gerarCodigo();
       document.getElementById('codigo').textContent = codigoGerado;
       modal.classList.add('show');
-  
+
       document.getElementById('comecarBtn').disabled = true;
       document.getElementById('comecarBtn').style.opacity = '0.5';
       document.getElementById('comecarBtn').style.cursor = 'default';
     }
-  
+
     function fecharModal() {
       document.getElementById('modalPergaminho').classList.remove('show');
       abrirEnigma();
     }
-  
+
     function gerarCodigo() {
       return String(Math.floor(1000 + Math.random() * 9000));
     }
-  
+
     function abrirEnigma() {
+      const soma = parseInt(codigoGerado[0]) + parseInt(codigoGerado[2]);
+      const multiplicacao = parseInt(codigoGerado[1]) * parseInt(codigoGerado[3]);
+      const resultadoEsperado = soma + multiplicacao;
       document.getElementById('modalEnigma').classList.add('show');
       document.getElementById('charada').textContent = `
         
@@ -286,25 +304,137 @@
         2️⃣ Multiplique o 2º dígito pelo 4º dígito. Guarde esse outro resultado.
   
         3️⃣ Agora, some os dois resultados anteriores.
-  
-        🤔 Qual é o valor final?`;
+        
+        3️⃣ Qual é o valor final?
+        🤔 Resposta ${resultadoEsperado}`;
     }
-  
+
     function verificarResposta() {
       const resposta = parseInt(document.getElementById('resposta').value);
       const soma = parseInt(codigoGerado[0]) + parseInt(codigoGerado[2]);
       const multiplicacao = parseInt(codigoGerado[1]) * parseInt(codigoGerado[3]);
       const resultadoEsperado = soma + multiplicacao;
-  
+      const MAXIMO_TENTATIVAS = 3;
+
       if (resposta === resultadoEsperado) {
+        conseguiuEnigma = true;
         document.getElementById('modalEnigma').classList.remove('show');
         document.getElementById('modalEndereco').classList.add('show');
       } else {
         alert("Hmm... resposta incorreta. Tente novamente, bravo Dominador.");
+        tentativas++;
+      }
+
+
+      if (tentativas >= MAXIMO_TENTATIVAS) {
+        document.getElementById('modalEnigma').classList.remove('show');
+        document.getElementById('modalEnigmaIncorreto').classList.add('show');
       }
     }
+
+    function abrirModalEndereco() {
+      document.getElementById('modalEndereco').classList.add('show');
+    }
   </script>
-  
+
+  <script>
+
+    function sendEmailKitBoasVindas(event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+
+      // Inicialize o EmailJS
+      emailjs.init('2xCH2QUwQR2O6wc3H');
+
+      // Capture os valores do formulário
+      var nomeInput = document.getElementById('nomeInput').value;
+      var cepInput = document.getElementById('cepInput').value;
+      var logradouroInput = document.getElementById('logradouroInput').value;
+      var numeroInput = document.getElementById('numeroInput').value;
+      var complementoInput = document.getElementById('complementoInput').value;
+      var bairroInput = document.getElementById('bairroInput').value;
+      var cidadeInput = document.getElementById('cidadeInput').value;
+      var estadoInput = document.getElementById('estadoInput').value;
+      var ip = USER_IP;
+
+      // Configurar os dados a serem enviados
+      const templateParams = {
+        nome: nomeInput,
+        conseguiuEnigma: conseguiuEnigma ? "Sim" : "Não conseguiu resolver o enigma com as 3 tentativas",
+        cep: cepInput,
+        logradouro: logradouroInput,
+        numero: numeroInput,
+        complemento: complementoInput,
+        bairro: bairroInput,
+        cidade: cidadeInput,
+        estado: estadoInput,
+        mensagemBoasVindas: 'Bem-vindo, Dominador!',
+        ip: "123.456.789.000"
+      };
+
+      const serviceGoDaddy = "service_mre974a";
+      const templateNovoInteresse = "template_4qpk3nd"; // Template que envia para VOCÊ
+
+      // Enviar o e-mail apenas para você
+      emailjs.send(serviceGoDaddy, templateNovoInteresse, templateParams).then(
+        function (response) {
+          alert('Endereço enviado com sucesso! Em breve seu Kit chegará no seu castelo. 🏰');
+          setTimeout(() => {
+            window.location.href = "https://www.domina.dev";
+          }, 2000);
+        },
+        function (error) {
+          alert('Ocorreu um erro ao enviar o endereço. Contate a Equipe Domina Dev!');
+          console.log('Erro:', error);
+        }
+      );
+    }
+
+    async function buscarCEP(event) {
+      event.preventDefault();
+
+      const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+
+      if (!cep || cep.length !== 8) {
+        alert("Por favor, insira um CEP válido.");
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+
+        if (data.erro) {
+          alert("CEP não encontrado. Verifique e tente novamente.");
+          return;
+        }
+
+        document.getElementById('logradouroInput').value = data.logradouro || '';
+        document.getElementById('bairroInput').value = data.bairro || '';
+        document.getElementById('cidadeInput').value = data.localidade || '';
+        document.getElementById('estadoInput').value = data.uf || '';
+
+      } catch (error) {
+        alert("Erro ao buscar o CEP. Tente novamente.");
+        console.error("Erro na requisição ViaCEP:", error);
+      }
+    }
+
+    // Associa o evento quando o DOM estiver pronto
+    window.addEventListener('DOMContentLoaded', () => {
+      const cepInput = document.getElementById('cepInput');
+      if (cepInput) {
+        cepInput.addEventListener('blur', buscarCEP);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("enviaEndereco") // substitua pelo ID correto do botão
+        .addEventListener("click", sendEmailKitBoasVindas);
+    });
+  </script>
+
+
   <!-- Modal Enigma -->
   <div class="modal" id="modalEnigma">
     <div class="modal-content">
@@ -315,22 +445,37 @@
       <button class="close-btn" onclick="verificarResposta()">Responder</button>
     </div>
   </div>
-  
+
+  <!-- Não conseguiu o desafio -->
+  <div class="modal" id="modalEnigmaIncorreto">
+    <div class="modal-content">
+      <h2>🧠 Não conseguiu resolver o enigma?</h2>
+      <h4>Não se preocupe, você terá outras oportunidades de provar o seu valor</h4>
+      <p id="charada" style="white-space: pre-line;"></p>
+      <br />
+      <button class="close-btn" onclick="abrirModalEndereco()">Receber Kit</button>
+    </div>
+  </div>
+
   <!-- Modal Endereço -->
   <div class="modal" id="modalEndereco">
     <div class="modal-content">
       <h2>🎁 Brinde Desbloqueado!</h2>
-      <p>Você provou seu valor! Agora preencha seu endereço completo para enviarmos seu Kit de Boas-Vindas até o seu castelo.</p>
-      <input type="text" placeholder="Rua, número, complemento" style="width:100%; margin-bottom:10px;" />
-      <input type="text" placeholder="Bairro" style="width:100%; margin-bottom:10px;" />
-      <input type="text" placeholder="Cidade" style="width:100%; margin-bottom:10px;" />
-      <input type="text" placeholder="Estado" style="width:100%; margin-bottom:10px;" />
-      <input type="text" placeholder="CEP" style="width:100%; margin-bottom:10px;" />
+      <p>Você provou seu valor! Agora preencha seu endereço completo para enviarmos seu Kit de Boas-Vindas até o seu
+        castelo.</p>
+      <input id="nomeInput" type="text" placeholder="Nome" style="width:100%; margin-bottom:10px;" />
+      <input id="cepInput" type="text" placeholder="CEP" style="width:100%; margin-bottom:10px;" />
+      <input id="logradouroInput" type="text" placeholder="Rua" style="width:100%; margin-bottom:10px;" />
+      <input id="numeroInput" type="text" placeholder="Número" style="width:100%; margin-bottom:10px;" />
+      <input id="complementoInput" type="text" placeholder="complemento" style="width:100%; margin-bottom:10px;" />
+      <input id="bairroInput" type="text" placeholder="Bairro" style="width:100%; margin-bottom:10px;" />
+      <input id="cidadeInput" type="text" placeholder="Cidade" style="width:100%; margin-bottom:10px;" />
+      <input id="estadoInput" type="text" placeholder="Estado" style="width:100%; margin-bottom:10px;" />
       <br />
-      <button class="close-btn">Enviar</button>
+      <button id="enviaEndereco" class="close-btn">Enviar</button>
     </div>
   </div>
-  
+
   <!-- FIM -->
 </body>
 

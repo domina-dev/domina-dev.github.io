@@ -21,12 +21,8 @@
     <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
-</script>
-
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-</head>
 
 <body>
     <header>
@@ -42,7 +38,7 @@
 
                 <!-- Menu (telas grandes ou retrátil ao abrir) -->
                 <ul class="menu">
-                    <!-- <li><a href="pagamento-confirmado.html">Teste</a></li> -->
+                    <li><a href="pagamento-confirmado.html">Teste</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#conteudo">Conteúdo</a></li>
                     <li><a href="#cases">Cases</a></li>
@@ -53,10 +49,6 @@
         </nav>
     </header>
 
-
-
-
-
     <section id="sobre">
         <div class="container mt-4" style="text-align: center;">
             <h2>Junte-se ao Reino da Programação</h2>
@@ -65,6 +57,54 @@
             <p>Você está pronto para transformar seu futuro e entrar de vez no mercado de tecnologia? Na jornada da
                 Domina Dev, você não será apenas mais um, será um líder, pronto para superar desafios, dominar o mercado
                 e se destacar como um profissional de excelência.</p>
+        </div>
+    </section>
+
+    <section id="inscrever">
+        <div class="container-banner-form">
+            <!-- Banner -->
+            <div class="banner">
+                <div class="banner-content">
+                    <p class="banner-text">Venha ser um Dominador!</p>
+                    <p class="banner-text">
+                        Na jornada da Domina Dev, você não será apenas mais um, será um líder, pronto para superar
+                        desafios,
+                        <span class="highlight-blue">dominar o mercado</span> e se destacar como um profissional de
+                        excelência.
+                    </p>
+                </div>
+                <div class="banner-image">
+                    <img src="src/views/images/programador.png" alt="Pessoa programando">
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <div class="form-container">
+                <h3>Garanta agora sua vaga com acesso <span class="highlight">IMEDIATO</span> à jornada Domina Dev 2025</h3>
+                <form id="formDominador">
+                    <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
+                    <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
+                    <input id="telefone" type="tel" placeholder="Telefone" required />
+                    <!-- <select id="sexo" name="sexo" required style="width: 100%; border: 1px solid #ccc; border-radius: 5px;">
+                        <option value="" disabled selected>Selecione seu sexo</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select> -->
+                    <!-- Campo honeypot (invisível para humanos) -->
+                    <input id="idade" type="text" name="idade" style="display: none;" autocomplete="off">
+
+                    <button id="submitButton" type="button" onclick="validateReCaptcha(event)" disabled>Inscreva-se</button>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1LT7NoBch51ZFX"></div>
+                    <!-- <div class="g-recaptcha" data-sitekey=""
+                        data-action="LOGIN"></div> -->
+                </form>
+                <p class="policy">
+                    *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
+                    as
+                    nossas
+                    <a href="politica-privacidade.html">políticas de privacidade</a>.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -185,59 +225,6 @@
 
         </div>
     </section>
-
-    <section id="inscrever">
-        <div class="container-banner-form">
-            <!-- Banner -->
-            <div class="banner">
-                <div class="banner-content">
-                    <p class="banner-text">Venha ser um Dominador!</p>
-                    <p class="banner-text">
-                        Na jornada da Domina Dev, você não será apenas mais um, será um líder, pronto para superar
-                        desafios,
-                        <span class="highlight-blue">dominar o mercado</span> e se destacar como um profissional de
-                        excelência.
-                    </p>
-                </div>
-                <div class="banner-image">
-                    <img src="src/views/images/programador.png" alt="Pessoa programando">
-                </div>
-            </div>
-
-            <!-- Formulário -->
-            <div class="form-container">
-                <h3>Realize seu cadastro gratuito para ter acesso <span class="highlight">VIP</span> à nossa turma de
-                    2025
-                </h3>
-                <form id="formDominador">
-                    <input id="nome" type="text" placeholder="Digite seu nome aqui" required />
-                    <input id="email" type="email" placeholder="Insira seu melhor e-mail" required />
-                    <input id="telefone" type="tel" placeholder="Telefone" required />
-                    <select id="sexo" name="sexo" required style="width: 100%; border: 1px solid #ccc; border-radius: 5px;">
-                        <option value="" disabled selected>Selecione seu sexo</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                    <!-- Campo honeypot (invisível para humanos) -->
-                    <input id="idade" type="text" name="idade" style="display: none;" autocomplete="off">
-
-                    <button id="submitButton" type="button" onclick="validateReCaptcha(event)" disabled>Entrar na lista
-                        de
-                        espera</button>
-                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1LT7NoBch51ZFX"></div>
-                    <!-- <div class="g-recaptcha" data-sitekey=""
-                        data-action="LOGIN"></div> -->
-                </form>
-                <p class="policy">
-                    *Ao clicar em "Entrar na lista de espera" você aceita receber informações por e-mail e concorda com
-                    as
-                    nossas
-                    <a href="politica-privacidade.html">políticas de privacidade</a>.
-                </p>
-            </div>
-        </div>
-    </section>
-
 
     <section id="contato">
         <div class="container">
