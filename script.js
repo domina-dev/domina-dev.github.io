@@ -109,11 +109,12 @@ function sendEmail() {
                 //Enviar email para Aluno
                 emailjs.send(serviceGoDaddy, templateBemVindo, templateParams).then(
                     function (response) {
+                        window.location.href = "https://mpago.la/22k6GnC";
                         limparCampos();
                     },
                     function (error) {
                         console.log('Erro:', error);
-                     }
+                    }
                 );
             },
             function (error) {
