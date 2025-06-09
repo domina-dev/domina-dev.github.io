@@ -82,7 +82,7 @@ function sendEmail() {
         var nome = document.getElementById('nome').value;
         var email = document.getElementById('email').value;
         var telefone = document.getElementById('telefone').value;
-        var sexo = document.getElementById('sexo').value;
+        // var sexo = document.getElementById('sexo').value;
         var idade = document.getElementById('idade').value;
         var ip = USER_IP;
 
@@ -91,8 +91,8 @@ function sendEmail() {
             nome: nome,
             email: email,
             telefone: telefone,
-            sexo: sexo,
-            mensagemBoasVindas: sexo == 'M' ? 'Bem-vindo, Dominador!' : 'Bem-vinda, Dominadora!',
+            // sexo: sexo,
+            mensagemBoasVindas: 'Bem-vindo, Dominador!',
             idade: idade,
             ip: ip
         };
@@ -185,7 +185,7 @@ function validateReCaptcha(event) {
 const nomeInput = document.getElementById('nome');
 const emailInput = document.getElementById('email');
 const telefoneInput = document.getElementById('telefone');
-const sexoInput = document.getElementById('sexo');
+// const sexoInput = document.getElementById('sexo');
 const submitButton = document.getElementById('submitButton');
 
 // Função para verificar se todos os campos estão preenchidos
